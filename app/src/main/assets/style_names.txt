@@ -1,0 +1,20 @@
+0 Detailed
+1 Pastel
+2 Melancholy
+3 Noir
+4 HDR
+5 Vintage
+6 Long Exposure
+7 Horror
+8 Sunny
+9 Bright
+10 Hazy
+11 Bokeh
+12 Serene
+13 Texture
+14 Ethereal
+15 Macro
+16 Depth of Field
+17 Geometric Composition
+18 Minimal
+19 Romantic
