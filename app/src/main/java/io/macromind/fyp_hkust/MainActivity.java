@@ -5,11 +5,14 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -24,7 +27,6 @@ import android.view.View;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
@@ -32,8 +34,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
-
-import io.macromind.fyp_hkust.caffe_android_lib.CaffeMobile;
 
 public class MainActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback, CNNListener {
 
@@ -88,9 +88,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                     if (!checkPermission()) {
                         requestPermission();
                     } else {
-                            // if (takePicIntent.resolveActivity(getPackageManager()) != null) {
-                            // takePicIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-                            // startActivityForResult(takePicIntent, REQUEST_IMAGE_CAPTURE);
                             takePicIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
                             startActivityForResult(takePicIntent, REQUEST_IMAGE_CAPTURE);
                     }
@@ -100,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         // Caffe setup
         mCaffeMobile = new CaffeMobile();
-        mCaffeMobile.setNumThreads(4);
+        mCaffeMobile.setNumThreads(8);
         mCaffeMobile.loadModel(DEPLOY_PROTOTXT, MODEL);
 
         float[] meanValues = {104, 117, 123};
@@ -155,6 +152,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 //         data.getData(), Toast.LENGTH_LONG).show();
                 imgPath = fileUri.getPath();
                 imageProcess(imgPath);
+
             } else if (resultCode == RESULT_CANCELED) {
                 // User cancelled the image capture
             } else {
@@ -163,23 +161,53 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         } else if (requestCode == REQUEST_IMAGE_PICK) {
             if(resultCode == RESULT_OK){
                 Uri selectedImage = data.getData();
-                try {
-                    InputStream imageStream = getContentResolver().openInputStream(selectedImage);
-                    Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
-                }
-                catch (FileNotFoundException e) {
-                    throw new RuntimeException ("Failed to select", e);
-                }
+                String[] filePathColumn = {MediaStore.Images.Media.DATA};
+                Cursor cursor = MainActivity.this.getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+                cursor.moveToFirst();
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                imgPath = cursor.getString(columnIndex);
+                cursor.close();
+                imageProcess(imgPath);
             }
             else {
 
             }
         }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void imageProcess(String path) {
         mBitmap = BitmapFactory.decodeFile(path);
+        Log.d(TAG, path);
+        Log.d(TAG, String.valueOf(mBitmap.getHeight()));
+        Log.d(TAG, String.valueOf(mBitmap.getWidth()));
+
         mDialog = ProgressDialog.show(MainActivity.this, "Classifying", "Just a sec", true);
+
+        CNNTask cnnTask = new CNNTask(MainActivity.this);
+        cnnTask.execute(path);
+    }
+
+    private class CNNTask extends AsyncTask<String, Void, Integer> {
+        private CNNListener listener;
+        private long startTime;
+
+        public CNNTask(CNNListener listener) {
+            this.listener = listener;
+        }
+
+        @Override
+        protected Integer doInBackground(String... strings) {
+            startTime = SystemClock.uptimeMillis();
+            return mCaffeMobile.predictImage(strings[0])[0];
+        }
+
+        @Override
+        protected void onPostExecute(Integer integer) {
+            Log.i(TAG, String.format("elapsed wall time: %d ms", SystemClock.uptimeMillis() - startTime));
+            listener.onTaskCompleted(integer);
+            super.onPostExecute(integer);
+        }
     }
 
     
@@ -213,7 +241,14 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
     @Override
     public void onTaskCompleted(int result){
-
+//        ivCaptured.setImageBitmap(bmp);
+//        tvLabel.setText(DIM_SUM_CLASSES[result]);
+//        btnCamera.setEnabled(true);
+//        btnSelect.setEnabled(true);
+        Log.i("Returned result is.", DIM_SUM_CLASSES[result]);
+        if (mDialog != null) {
+            mDialog.dismiss();
+        }
     }
 
     private void requestPermission() {
