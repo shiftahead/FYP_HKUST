@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -38,17 +36,18 @@ import java.util.Scanner;
 public class MainActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback, CNNListener {
 
     public static final String TAG = "MainActivity";
+    public static final String EXTRA_RESULT_ARRAY = "io.macromind.fyp_hkust.result_array";
+    public static final String EXTRA_IMAGE_PATH = "io.macromind.fyp_hkust.image_path";
     public static final String DEPLOY_PROTOTXT = "/sdcard/caffe_mobile/fyp/deploy.prototxt";
     public static final String MODEL = "/sdcard/caffe_mobile/fyp/fyp_iter_60000.caffemodel";
-    private static String[] DIM_SUM_CLASSES;
+    public static String[] DIM_SUM_CLASSES;
     static final int REQUEST_IMAGE_CAPTURE = 100;
     static final int REQUEST_IMAGE_PICK = 200;
     static final int MEDIA_TYPE_IMAGE = 1;
     static final int REQUEST_STORAGE = 2;
 
-
+    private String mPath;
     private Uri fileUri;
-    private Bitmap mBitmap;
     private ProgressDialog mDialog;
     private View mLayout;
 
@@ -97,25 +96,13 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         // Caffe setup
         mCaffeMobile = new CaffeMobile();
-        mCaffeMobile.setNumThreads(8);
+        mCaffeMobile.setNumThreads(4);
         mCaffeMobile.loadModel(DEPLOY_PROTOTXT, MODEL);
 
         float[] meanValues = {104, 117, 123};
         mCaffeMobile.setMean(meanValues);
 
-        AssetManager am = this.getAssets();
-        try {
-            InputStream is = am.open("fyp_words.txt");
-            Scanner sc = new Scanner(is);
-            List<String> lines = new ArrayList<String>();
-            while (sc.hasNextLine()) {
-                final String temp = sc.nextLine();
-                lines.add(temp.substring(temp.indexOf(" ") + 1));
-            }
-            DIM_SUM_CLASSES = lines.toArray(new String[0]);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        readClasses();
     }
 
     @Override
@@ -145,13 +132,12 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        String imgPath;
         if (requestCode == REQUEST_IMAGE_CAPTURE) {
             if (resultCode == RESULT_OK) {
                 // Toast.makeText(this, "Image saved to:\n" +
                 //         data.getData(), Toast.LENGTH_LONG).show();
-                imgPath = fileUri.getPath();
-                imageProcess(imgPath);
+                mPath = fileUri.getPath();
+                imageProcess(mPath);
 
             } else if (resultCode == RESULT_CANCELED) {
                 // User cancelled the image capture
@@ -165,9 +151,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 Cursor cursor = MainActivity.this.getContentResolver().query(selectedImage, filePathColumn, null, null, null);
                 cursor.moveToFirst();
                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                imgPath = cursor.getString(columnIndex);
+                mPath = cursor.getString(columnIndex);
                 cursor.close();
-                imageProcess(imgPath);
+                imageProcess(mPath);
             }
             else {
 
@@ -177,10 +163,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     }
 
     private void imageProcess(String path) {
-        mBitmap = BitmapFactory.decodeFile(path);
-        Log.d(TAG, path);
-        Log.d(TAG, String.valueOf(mBitmap.getHeight()));
-        Log.d(TAG, String.valueOf(mBitmap.getWidth()));
+//        Log.d(TAG, path);
+//        Log.d(TAG, String.valueOf(mBitmap.getHeight()));
+//        Log.d(TAG, String.valueOf(mBitmap.getWidth()));
 
         mDialog = ProgressDialog.show(MainActivity.this, "Classifying", "Just a sec", true);
 
@@ -188,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         cnnTask.execute(path);
     }
 
-    private class CNNTask extends AsyncTask<String, Void, Integer> {
+    private class CNNTask extends AsyncTask<String, Void, int[]> {
         private CNNListener listener;
         private long startTime;
 
@@ -197,17 +182,41 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         }
 
         @Override
-        protected Integer doInBackground(String... strings) {
+        protected int[] doInBackground(String... strings) {
             startTime = SystemClock.uptimeMillis();
-            return mCaffeMobile.predictImage(strings[0])[0];
+            int[] resultArray = mCaffeMobile.predictImage(strings[0]);
+//            Integer[] newArray = new Integer[resultArray.length];
+//            int i = 0;
+//            for (int value : resultArray) {
+//                newArray[i++] = Integer.valueOf(value);
+//            }
+            return resultArray;
         }
 
         @Override
-        protected void onPostExecute(Integer integer) {
+        protected void onPostExecute(int[] array) {
             Log.i(TAG, String.format("elapsed wall time: %d ms", SystemClock.uptimeMillis() - startTime));
-            listener.onTaskCompleted(integer);
-            super.onPostExecute(integer);
+//            int[] resultArray = new int[integer.length];
+//            for (int i = 0; i < integer.length; ++i) {
+//                resultArray[i] = integer[i].intValue();
+//            }
+            listener.onTaskCompleted(array);
+            super.onPostExecute(array);
         }
+    }
+
+    @Override
+    public void onTaskCompleted(int[] result){
+//        ivCaptured.setImageBitmap(bmp);
+//        tvLabel.setText(DIM_SUM_CLASSES[result]);
+
+        if (mDialog != null) {
+            mDialog.dismiss();
+        }
+        Intent i = new Intent(MainActivity.this, ResultActivity.class);
+        i.putExtra(EXTRA_RESULT_ARRAY, result);
+        i.putExtra(EXTRA_IMAGE_PATH, mPath);
+        startActivity(i);
     }
 
     
@@ -239,17 +248,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         return mediaFile;
     }
 
-    @Override
-    public void onTaskCompleted(int result){
-//        ivCaptured.setImageBitmap(bmp);
-//        tvLabel.setText(DIM_SUM_CLASSES[result]);
-//        btnCamera.setEnabled(true);
-//        btnSelect.setEnabled(true);
-        Log.i("Returned result is.", DIM_SUM_CLASSES[result]);
-        if (mDialog != null) {
-            mDialog.dismiss();
-        }
-    }
 
     private void requestPermission() {
 
@@ -306,6 +304,22 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             Log.i(TAG, "permission not granted");
 
             return false;
+        }
+    }
+
+    private void readClasses() {
+        AssetManager am = this.getAssets();
+        try {
+            InputStream is = am.open("fyp_words.txt");
+            Scanner sc = new Scanner(is);
+            List<String> lines = new ArrayList<String>();
+            while (sc.hasNextLine()) {
+                final String temp = sc.nextLine();
+                lines.add(temp.substring(temp.indexOf(" ") + 1));
+            }
+            DIM_SUM_CLASSES = lines.toArray(new String[0]);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
