@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,6 +27,8 @@ public class ResultActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_result);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         mCapturedImage = (ImageView) findViewById(R.id.captured_image);
         mResultsListView = (ListView) findViewById(R.id.results_list);
@@ -37,7 +40,7 @@ public class ResultActivity extends AppCompatActivity{
 //        Log.i("Returned result 3 is.", DIM_SUM_CLASSES[mResults[2]]);
 
         mBitmap = BitmapFactory.decodeFile(mPath);
-        mBitmap = Bitmap.createScaledBitmap(mBitmap, 500, 500*mBitmap.getHeight()/mBitmap.getWidth(), true);
+//        mBitmap = Bitmap.createScaledBitmap(mBitmap, 500, 500*mBitmap.getHeight()/mBitmap.getWidth(), true);
         mCapturedImage.setImageBitmap(mBitmap);
 
 
