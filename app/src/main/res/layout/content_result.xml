@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="io.macromind.fyp_hkust.ResultActivity" >
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/image_card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:elevation="200dp"
+        android:layout_margin="@dimen/margin_medium"
+        card_view:cardCornerRadius="4dp" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:id="@+id/captured_image"
+                android:layout_alignParentTop="true"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/captured_image"
+                android:padding="8dp"
+                android:text="Is this ..."
+                android:textColor="#222"
+                android:textStyle="bold"
+                android:textSize="22dp" />
+            
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:id="@+id/results_list"
+                android:layout_gravity="center"> </ListView>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <Button
+        android:id="@+id/support_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Not what you want? Take a look at what we support now!"
+        android:textColor="@color/colorAccent"
+        style="@style/Base.Widget.AppCompat.Button.Borderless"/>
+
+</LinearLayout>

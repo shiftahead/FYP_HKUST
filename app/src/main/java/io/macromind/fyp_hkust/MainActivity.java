@@ -120,7 +120,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -163,10 +162,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     }
 
     private void imageProcess(String path) {
-//        Log.d(TAG, path);
-//        Log.d(TAG, String.valueOf(mBitmap.getHeight()));
-//        Log.d(TAG, String.valueOf(mBitmap.getWidth()));
-
         mDialog = ProgressDialog.show(MainActivity.this, "Classifying", "Just a sec", true);
 
         CNNTask cnnTask = new CNNTask(MainActivity.this);
@@ -185,21 +180,12 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         protected int[] doInBackground(String... strings) {
             startTime = SystemClock.uptimeMillis();
             int[] resultArray = mCaffeMobile.predictImage(strings[0]);
-//            Integer[] newArray = new Integer[resultArray.length];
-//            int i = 0;
-//            for (int value : resultArray) {
-//                newArray[i++] = Integer.valueOf(value);
-//            }
             return resultArray;
         }
 
         @Override
         protected void onPostExecute(int[] array) {
             Log.i(TAG, String.format("elapsed wall time: %d ms", SystemClock.uptimeMillis() - startTime));
-//            int[] resultArray = new int[integer.length];
-//            for (int i = 0; i < integer.length; ++i) {
-//                resultArray[i] = integer[i].intValue();
-//            }
             listener.onTaskCompleted(array);
             super.onPostExecute(array);
         }
@@ -207,9 +193,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
     @Override
     public void onTaskCompleted(int[] result){
-//        ivCaptured.setImageBitmap(bmp);
-//        tvLabel.setText(DIM_SUM_CLASSES[result]);
-
         if (mDialog != null) {
             mDialog.dismiss();
         }
@@ -278,9 +261,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                         .show();
 
             } else {
-
-                // No explanation needed, we can request the permission.
-
                 ActivityCompat.requestPermissions(MainActivity.this,
                         new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                         REQUEST_STORAGE);
