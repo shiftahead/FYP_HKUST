@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/resultInfoRootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="io.macromind.fyp_hkust.ResultActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:adjustViewBounds="true"
+        android:layout_gravity="top" />
+    <!--android:src="@drawable/food_egg_tart"-->
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ViewStub
+                android:id="@+id/expand_text_view_description"
+                android:inflatedId="@+id/message_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.75" />
+            <ViewStub
+                android:id="@+id/expand_text_view_similarFood"
+                android:inflatedId="@+id/message_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.75" />
+            <ViewStub
+                android:id="@+id/expand_text_view_whereToFind"
+                android:inflatedId="@+id/message_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.75" />
+            <!--<include-->
+            <!--android:id="@+id/expand_text_view_recipe"-->
+            <!--layout="@layout/expandable_text" />-->
+            <ViewStub
+                android:id="@+id/expand_text_view_recipe"
+                android:inflatedId="@+id/message_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.75" />
+
+        </LinearLayout>
+    </ScrollView>
+    <!--<RelativeLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_gravity="bottom">-->
+
+    <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:text="@string/result_eggtart_info"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:id="@+id/textView2"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:singleLine="false"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:autoText="false"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:typeface="sans"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:textSize="30dp" />&ndash;&gt;-->
+
+
+    <!-- -->
+
+
+
+    <!--<TableLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_alignParentTop="true"-->
+    <!--android:layout_alignParentStart="true">-->
+    <!--<TableRow-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:padding="5dip" >-->
+
+    <!--<TextView-->
+    <!--android:text="Name" />-->
+
+    <!--<TextView-->
+    <!--android:text="蛋撻"-->
+    <!--android:layout_weight="1"/>-->
+    <!--</TableRow>-->
+
+    <!--<TableRow-->
+    <!--android:id="@+id/tableRow21"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:padding="5dip" >-->
+
+    <!--<TextView-->
+    <!--android:text="Description" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="@string/result_eggtart_info"-->
+    <!--android:elevation="10dp"-->
+    <!--android:background="@drawable/shadowbg"-->
+    <!--android:layout_weight="1"/>-->
+    <!--</TableRow>-->
+    <!--<TableRow-->
+    <!--android:id="@+id/tableRow2"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:padding="5dip" >-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/textView1"-->
+    <!--android:text="Column 1"-->
+    <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+    <!--/>-->
+
+    <!--<Button-->
+    <!--android:id="@+id/button1"-->
+    <!--android:text="Column 2" />-->
+    <!--</TableRow>-->
+
+    <!--</TableLayout>-->
+    <!--</RelativeLayout>-->
+
+</LinearLayout>

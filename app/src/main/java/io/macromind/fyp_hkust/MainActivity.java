@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
 
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     public static final String DEPLOY_PROTOTXT = "/sdcard/caffe_mobile/fyp/deploy.prototxt";
     public static final String MODEL = "/sdcard/caffe_mobile/fyp/fyp_iter_60000.caffemodel";
     public static String[] DIM_SUM_CLASSES;
+    public static Integer[] DIM_SUM_INDEXES;
     static final int REQUEST_IMAGE_CAPTURE = 100;
     static final int REQUEST_IMAGE_PICK = 200;
     static final int MEDIA_TYPE_IMAGE = 1;
@@ -293,11 +295,15 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             InputStream is = am.open("fyp_words.txt");
             Scanner sc = new Scanner(is);
             List<String> lines = new ArrayList<String>();
+            List<Integer> index = new ArrayList<Integer>();
             while (sc.hasNextLine()) {
                 final String temp = sc.nextLine();
                 lines.add(temp.substring(temp.indexOf(" ") + 1));
+                index.add(new Integer(temp.substring(0, temp.indexOf(" "))));
             }
             DIM_SUM_CLASSES = lines.toArray(new String[0]);
+            DIM_SUM_INDEXES = index.toArray(new Integer[0]);
+            Log.i("CLASSDD", DIM_SUM_CLASSES.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
