@@ -1,2 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/Users/Justin/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.2.1/support-annotations-23.2.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="ccb693bc0774fcb637246f7360de25b4af7df318">
+        <dex dex="/Users/Justin/Documents/FYP_HKUST/app/build/intermediates/pre-dexed/debug/support-annotations-23.2.1_65aebb33eda858bda4dff6eeb301e606088ff10c.jar" />
+    </item>
+    <item
+        jar="/Users/Justin/Documents/FYP_HKUST/app/build/intermediates/exploded-aar/com.android.support/design/23.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="72961d8b453b46e277702f18de9d210bc019e36e">
+        <dex dex="/Users/Justin/Documents/FYP_HKUST/app/build/intermediates/pre-dexed/debug/com.android.support-design-23.2.1_f1809cdadf9575861ea6c22e8ac3ddbcc8123d4b.jar" />
+    </item>
+    <item
+        jar="/Users/Justin/Documents/FYP_HKUST/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e3885783ff8926ed9e2fdcd16816c2e1e73e7aee">
+        <dex dex="/Users/Justin/Documents/FYP_HKUST/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-23.2.1_516f85011c7fd32ea19a19e81bcea8380496c478.jar" />
+    </item>
+    <item
+        jar="/Users/Justin/Documents/FYP_HKUST/app/build/intermediates/exploded-aar/FYP_HKUST/library/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="85106b78752c5ab584bc16654ae5b7f35181d583">
+        <dex dex="/Users/Justin/Documents/FYP_HKUST/app/build/intermediates/pre-dexed/debug/FYP_HKUST-library-unspecified_e45d096c06f9ce29a991507c4c80d6c80bb680e4.jar" />
+    </item>
+    <item
+        jar="/Users/Justin/Documents/FYP_HKUST/app/build/intermediates/exploded-aar/com.ms-square/expandableTextView/0.1.4/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="b305cfd7ae732d7c146fe3046aea90f877c3892b">
+        <dex dex="/Users/Justin/Documents/FYP_HKUST/app/build/intermediates/pre-dexed/debug/com.ms-square-expandableTextView-0.1.4_fb41374674ac9555d8303f71556000e50325f216.jar" />
+    </item>
+    <item
+        jar="/Users/Justin/Documents/FYP_HKUST/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="3469cb457f10f74c28cbc05f069b6c894f6cbdd0">
+        <dex dex="/Users/Justin/Documents/FYP_HKUST/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-23.2.1_598ad5adcb500bfebd5ced8232b4ad657654b1fa.jar" />
+    </item>
+    <item
+        jar="/Users/Justin/Documents/FYP_HKUST/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="3be474b1b21b31cf2fa93fe6bd641ae108d96452">
+        <dex dex="/Users/Justin/Documents/FYP_HKUST/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.2.1_d2e46a63df1754f4029859073da1581e7eb44c17.jar" />
+    </item>
+    <item
+        jar="/Users/Justin/Documents/FYP_HKUST/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="673d77a5bbddd766037f088e775df525c46407f0">
+        <dex dex="/Users/Justin/Documents/FYP_HKUST/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-23.2.1_bede6a23b3468385824cbac3bea8417260911be6.jar" />
+    </item>
+    <item
+        jar="/Users/Justin/Documents/FYP_HKUST/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="82ce13fd19cdfde0e392f03c27edeba8d4333648">
+        <dex dex="/Users/Justin/Documents/FYP_HKUST/app/build/intermediates/pre-dexed/debug/com.android.support-cardview-v7-23.3.0_887c2f97ac059c8b9bc44bfa5e3a6a0fe8fae541.jar" />
+    </item>
+    <item
+        jar="/Users/Justin/Documents/FYP_HKUST/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.1/jars/libs/internal_impl-23.2.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="607a3d0b8013b4ccbfeb0b7cb293351994e021fb">
+        <dex dex="/Users/Justin/Documents/FYP_HKUST/app/build/intermediates/pre-dexed/debug/internal_impl-23.2.1_e1740314f09b236ba057b5ecd7c2901e360c8271.jar" />
+    </item>
+    <item
+        jar="/Users/Justin/Documents/FYP_HKUST/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e4d0cbb0b999604b349062f0214a0a228a7fd151">
+        <dex dex="/Users/Justin/Documents/FYP_HKUST/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.2.1_2c53b4af4e57378274926a557d4246db89cdf3ad.jar" />
+    </item>
+
+</items>

@@ -1,7 +1,7 @@
-1 鳳爪
-2 蝦餃
-3 燒賣
-4 蛋撻
-5 春卷
-6 雞蛋仔
-7 叉燒包
+1 Chicken Feet
+2 Har Gow
+3 Shumai
+4 Eggtart
+5 Spring Roll
+6 Egg Waffle
+7 Cha Siu Bao

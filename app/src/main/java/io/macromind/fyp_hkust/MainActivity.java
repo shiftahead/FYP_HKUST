@@ -21,7 +21,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
 
@@ -66,6 +65,11 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         setContentView(R.layout.activity_main);
         mLayout = findViewById(R.id.relative_layout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        if (!checkPermission()) {
+            requestPermission();
+        }
+
         setSupportActionBar(toolbar);
         FloatingActionButton selectFab = (FloatingActionButton) findViewById(R.id.select_fab);
         if (selectFab != null) {

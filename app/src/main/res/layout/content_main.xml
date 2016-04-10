@@ -30,8 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:elevation="200dp"
-            card_view:cardCornerRadius="4dp"
-            card_view:cardBackgroundColor="@color/white">
+            card_view:cardCornerRadius="4dp">
 
             <TextView
                 android:id="@+id/info_text"
