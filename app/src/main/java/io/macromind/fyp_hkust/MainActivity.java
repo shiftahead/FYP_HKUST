@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     private String mPath;
     private Uri fileUri;
     private ProgressDialog mDialog;
+    private ProgressDialog mLoadingDialog;
     private View mLayout;
 
     private CaffeMobile mCaffeMobile;
@@ -66,9 +67,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         mLayout = findViewById(R.id.relative_layout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        if (!checkPermission()) {
-            requestPermission();
-        }
 
         setSupportActionBar(toolbar);
         FloatingActionButton selectFab = (FloatingActionButton) findViewById(R.id.select_fab);
@@ -76,9 +74,13 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             selectFab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent pickPicIntent = new Intent(Intent.ACTION_PICK);
-                    pickPicIntent.setType("image/*");
-                    startActivityForResult(pickPicIntent, REQUEST_IMAGE_PICK);
+                    if (!checkPermission()) {
+                        requestPermission();
+                    } else {
+                        Intent pickPicIntent = new Intent(Intent.ACTION_PICK);
+                        pickPicIntent.setType("image/*");
+                        startActivityForResult(pickPicIntent, REQUEST_IMAGE_PICK);
+                    }
                 }
             });
         }
@@ -100,15 +102,29 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             });
         }
 
-        // Caffe setup
+        if (!checkPermission()) {
+            requestPermission();
+        } else {
+            // Caffe setup
+
+            LoadingTask loadingTask = new LoadingTask();
+            loadingTask.execute();
+        }
+    }
+
+    private boolean caffeSetup() {
+
         mCaffeMobile = new CaffeMobile();
         mCaffeMobile.setNumThreads(4);
-        mCaffeMobile.loadModel(DEPLOY_PROTOTXT, MODEL);
+        try {
+            mCaffeMobile.loadModel(DEPLOY_PROTOTXT, MODEL);
+        } catch (Exception e) {
+            return false;
+        }
 
         float[] meanValues = {104, 117, 123};
         mCaffeMobile.setMean(meanValues);
-
-        readClasses();
+        return true;
     }
 
     @Override
@@ -139,8 +155,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_CAPTURE) {
             if (resultCode == RESULT_OK) {
-                // Toast.makeText(this, "Image saved to:\n" +
-                //         data.getData(), Toast.LENGTH_LONG).show();
                 mPath = fileUri.getPath();
                 imageProcess(mPath);
 
@@ -191,11 +205,40 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         @Override
         protected void onPostExecute(int[] array) {
-            Log.i(TAG, String.format("elapsed wall time: %d ms", SystemClock.uptimeMillis() - startTime));
+            Log.i(TAG, String.format("elapsed computing time: %d ms", SystemClock.uptimeMillis() - startTime));
             listener.onTaskCompleted(array);
             super.onPostExecute(array);
         }
     }
+
+    private class LoadingTask extends AsyncTask<Void, Void, Boolean> {
+        private long startTime;
+
+        public LoadingTask() {
+            mLoadingDialog = ProgressDialog.show(MainActivity.this, "Loading classifer", "Almost there...", true);
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            startTime = SystemClock.uptimeMillis();
+            if (caffeSetup() && readClasses()) {
+                return true;
+            } else
+                return false;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean b) {
+            Log.i(TAG, String.format("elapsed loading time: %d ms", (SystemClock.uptimeMillis() - startTime)));
+            if (b && mLoadingDialog != null) {
+                mLoadingDialog.dismiss();
+            }
+            super.onPostExecute(b);
+        }
+
+    }
+
+
 
     @Override
     public void onTaskCompleted(int[] result){
@@ -206,6 +249,25 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         i.putExtra(EXTRA_RESULT_ARRAY, result);
         i.putExtra(EXTRA_IMAGE_PATH, mPath);
         startActivity(i);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_STORAGE: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    LoadingTask loadingTask = new LoadingTask();
+                    loadingTask.execute();
+
+                } else {
+                    Snackbar.make(mLayout, "Permissions were not granted.",
+                            Snackbar.LENGTH_SHORT).show();
+                }
+                return;
+            }
+        }
     }
 
     
@@ -276,7 +338,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 // result of the request.
             }
         }
-
     }
 
     private boolean checkPermission() {
@@ -293,23 +354,25 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         }
     }
 
-    private void readClasses() {
+    private boolean readClasses() {
         AssetManager am = this.getAssets();
-        try {
-            InputStream is = am.open("fyp_words.txt");
-            Scanner sc = new Scanner(is);
-            List<String> lines = new ArrayList<String>();
-            List<Integer> index = new ArrayList<Integer>();
-            while (sc.hasNextLine()) {
-                final String temp = sc.nextLine();
-                lines.add(temp.substring(temp.indexOf(" ") + 1));
-                index.add(new Integer(temp.substring(0, temp.indexOf(" "))));
+            try {
+                InputStream is = am.open("fyp_words.txt");
+                Scanner sc = new Scanner(is);
+                List<String> lines = new ArrayList<String>();
+                List<Integer> index = new ArrayList<Integer>();
+                while (sc.hasNextLine()) {
+                    final String temp = sc.nextLine();
+                    lines.add(temp.substring(temp.indexOf(" ") + 1));
+                    index.add(new Integer(temp.substring(0, temp.indexOf(" "))));
+                }
+                DIM_SUM_CLASSES = lines.toArray(new String[0]);
+                DIM_SUM_INDEXES = index.toArray(new Integer[0]);
+                //Log.i("CLASSDD", DIM_SUM_CLASSES.toString());
+                return true;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return false;
             }
-            DIM_SUM_CLASSES = lines.toArray(new String[0]);
-            DIM_SUM_INDEXES = index.toArray(new Integer[0]);
-            Log.i("CLASSDD", DIM_SUM_CLASSES.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }
