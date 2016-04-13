@@ -29,7 +29,7 @@ public class CaffeMobile {
     }
 
     public int[] predictImage(String imgPath) {
-        return predictImage(imgPath, 3);
+        return predictImage(imgPath, 2);
     }
 
 }

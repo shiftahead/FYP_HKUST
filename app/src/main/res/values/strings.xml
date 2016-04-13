@@ -5,52 +5,52 @@
 
     <!--1 鳳爪-->
     <!--phoenix claws (Chicken feet)-->
-    <string name="info_1">Chicken feet are used in several regional Chinese cuisines; they can be served as a beer snack, cold dish, soup or main dish. In Guangdong and Hong Kong,they are typically deep fried and steamed first to make them puffy before being stewed and simmered in a sauce flavoured with black fermented beans, bean paste, and sugar; or in abalone sauce.</string>
-    <string name="similar_1">Indonesian soto ceker, Malaysian kripik,</string>
-    <string name="where_1">Chinese dim sum restaurant</string>
-    <!--<string name="recipe_7">-->
+    <string name="info_0">Chicken feet are used in several regional Chinese cuisines; they can be served as a beer snack, cold dish, soup or main dish. In Guangdong and Hong Kong,they are typically deep fried and steamed first to make them puffy before being stewed and simmered in a sauce flavoured with black fermented beans, bean paste, and sugar; or in abalone sauce.</string>
+    <string name="similar_0">Indonesian soto ceker, Malaysian kripik,</string>
+    <string name="where_0">Chinese dim sum restaurant</string>
+    <!--<string name="recipe_6">-->
 
     <!--2 蝦餃-->
     <!--Har gow (Shrimp Dumpling)-->
-    <string name="info_2">These shrimp dumplings are transparent and smooth. The prawn dumplings first appeared in Guangzhou outskirts near the creek bazaar Deli. This dish is said to be the one that the skill of a dim sum chef is judged on. Traditionally, ha gow should have at least seven and preferably ten or more pleats imprinted on its wrapper. The skin must be thin and translucent, yet be sturdy enough not to break when picked up with chopsticks. It must not stick to the paper, container or the other ha gow in the basket. The shrimp must be cooked well, but not overcooked. The amount of meat should be generous, yet not so much that it cannot be eaten in one bite.</string>
-    <!--<string name="similar_2">-->
-    <string name="where_2">Chinese dim sum restaurant</string>
-    <!--<string name="recipe_2">-->
+    <string name="info_1">These shrimp dumplings are transparent and smooth. The prawn dumplings first appeared in Guangzhou outskirts near the creek bazaar Deli. This dish is said to be the one that the skill of a dim sum chef is judged on. Traditionally, ha gow should have at least seven and preferably ten or more pleats imprinted on its wrapper. The skin must be thin and translucent, yet be sturdy enough not to break when picked up with chopsticks. It must not stick to the paper, container or the other ha gow in the basket. The shrimp must be cooked well, but not overcooked. The amount of meat should be generous, yet not so much that it cannot be eaten in one bite.</string>
+    <!--<string name="similar_1">-->
+    <string name="where_1">Chinese dim sum restaurant</string>
+    <!--<string name="recipe_1">-->
 
 
     <!--3 燒賣-->
     <!--Shumai-->
-    <string name="info_3">This is the most well-known variety from the south-eastern province of Guangdong. As prepared in Cantonese cuisine, siumai is also referred to as "pork and mushroom dumpling." Its standard filling consisting primarily of ground pork, small whole or chopped shrimp,Chinese black mushroom, green onion (also called scallion) and ginger with seasonings of Chinese rice wine e.g. Shaoxing rice wine, soy sauce, sesame oil and chicken stock. Bamboo shoots, water chestnuts and pepper can also be added. The outer covering is made of a thin sheet of lye water dough. The center is usually garnished with an orange dot, made of crab roe or diced carrot, although a green dot made with a pea may be used. The decorative presentations vary.A fish paste variety of siumai is sold as a popular street food in Hong Kong, usually alongside curry fishballs. It is most often eaten with a sweet soy sauce and chilli oil.</string>
-    <string name="similar_3"> Indonesian siomay, Philippine siomai</string>
-    <string name="where_3">Chinese dim sum restaurant or street food stall</string>
-    <!--<string name="recipe_3">-->
+    <string name="info_2">This is the most well-known variety from the south-eastern province of Guangdong. As prepared in Cantonese cuisine, siumai is also referred to as "pork and mushroom dumpling." Its standard filling consisting primarily of ground pork, small whole or chopped shrimp,Chinese black mushroom, green onion (also called scallion) and ginger with seasonings of Chinese rice wine e.g. Shaoxing rice wine, soy sauce, sesame oil and chicken stock. Bamboo shoots, water chestnuts and pepper can also be added. The outer covering is made of a thin sheet of lye water dough. The center is usually garnished with an orange dot, made of crab roe or diced carrot, although a green dot made with a pea may be used. The decorative presentations vary.A fish paste variety of siumai is sold as a popular street food in Hong Kong, usually alongside curry fishballs. It is most often eaten with a sweet soy sauce and chilli oil.</string>
+    <string name="similar_2"> Indonesian siomay, Philippine siomai</string>
+    <string name="where_2">Chinese dim sum restaurant or street food stall</string>
+    <!--<string name="recipe_2">-->
 
     <!--4 蛋撻-->
     <!--egg tart-->
-    <string name="info_4">Overall, egg tarts have two main types of crusts: shortcrust pastry or puff pastry, traditionally made with lard rather than butter or shortening. They are both filled with mixture of egg and sugar. The egg tarts from The Tai Cheong Bakery gained fame when Chris Patten, the last Governor of Hong Kong, called them "the best Egg Tarts in the world" during his frequent public visit to the bakery.</string>
-    <string name="similar_4">English custard tarts. Though the texture of the custard is richer in a sense that it is much eggier and less creamy.</string>
-    <string name="where_4">Almost every bakery, chinese restaurants and some chained tea houses.</string>
-    <!--<string name="recipe_4">-->
+    <string name="info_3">Overall, egg tarts have two main types of crusts: shortcrust pastry or puff pastry, traditionally made with lard rather than butter or shortening. They are both filled with mixture of egg and sugar. The egg tarts from The Tai Cheong Bakery gained fame when Chris Patten, the last Governor of Hong Kong, called them "the best Egg Tarts in the world" during his frequent public visit to the bakery.</string>
+    <string name="similar_3">English custard tarts. Though the texture of the custard is richer in a sense that it is much eggier and less creamy.</string>
+    <string name="where_3">Almost every bakery, chinese restaurants and some chained tea houses.</string>
+    <!--<string name="recipe_3">-->
 
     <!--5 春卷-->
     <!--Spring rolls-->
-    <string name="info_5">Spring rolls are a large variety of filled, rolled appetizers or dim sum found in East Asian and Southeast Asian cuisine. The name is a literal translation of the Chinese \'spring roll\'. The kind of wrapper, fillings, and cooking technique used, as well as the name, vary considerably within this large area, depending on the region\'s culture. In Hong Kong, it is a fried dish usually available as a dim sum. It typically contains minced pork, shredded carrot, bean sprouts and other vegetables served with a sauce similar to Worcestershire sauce.</string>
-    <string name="similar_5">Vietnam spring roll</string>
-    <string name="where_5">Chinese restaurant</string>
-    <!--<string name="recipe_5">-->
+    <string name="info_4">Spring rolls are a large variety of filled, rolled appetizers or dim sum found in East Asian and Southeast Asian cuisine. The name is a literal translation of the Chinese \'spring roll\'. The kind of wrapper, fillings, and cooking technique used, as well as the name, vary considerably within this large area, depending on the region\'s culture. In Hong Kong, it is a fried dish usually available as a dim sum. It typically contains minced pork, shredded carrot, bean sprouts and other vegetables served with a sauce similar to Worcestershire sauce.</string>
+    <string name="similar_4">Vietnam spring roll</string>
+    <string name="where_4">Chinese restaurant</string>
+    <!--<string name="recipe_4">-->
 
     <!--6 雞蛋仔-->
     <!--Egg waffle / egg puff-->
-    <string name="info_6">An egg waffle is a spherical egg-based waffle popular in Hong Kong and is an eggy leavened batter cooked between two plates of semi-spherical cells. They are best served hot, and often eaten plain. They can also be served with fruit and flavors such as strawberry, coconut or chocolate. It is referred to by its original Cantonese name, gai daan jai (鷄蛋仔). They are sometimes referred to as Hong Kong cakes in Chinatowns across America, especially in New York.</string>
-    <string name="similar_6">Belgium waffle</string>
-    <string name="where_6">Street stall</string>
-    <!--<string name="recipe_6">-->
+    <string name="info_5">An egg waffle is a spherical egg-based waffle popular in Hong Kong and is an eggy leavened batter cooked between two plates of semi-spherical cells. They are best served hot, and often eaten plain. They can also be served with fruit and flavors such as strawberry, coconut or chocolate. It is referred to by its original Cantonese name, gai daan jai (鷄蛋仔). They are sometimes referred to as Hong Kong cakes in Chinatowns across America, especially in New York.</string>
+    <string name="similar_5">Belgium waffle</string>
+    <string name="where_5">Street stall</string>
+    <!--<string name="recipe_5">-->
 
     <!--7 叉燒包-->
     <!--Cha siu bao (Barbecued pork bun)-->
-    <string name="info_7">Cha siu bao is visually very similar to other types of steamed bun, but the unique mix of leavening gives the dough of cha siu bao the texture of a slightly dense, but fine soft bread.Encased in the center of the bun is tender, sweet, slow-roasted pork tenderloin which is diced, and then mixed into a syrupy mixture of oyster sauce, hoisin sauce, roasted sesame seed oil, rice vinegar, shaoxing wine or dry sherry, soy sauce, sugar and cornstarch.</string>
-    <string name="similar_7">Manapua in Hawaii or keke puaa in American Samoa</string>
-    <string name="where_7">Almost all chinese dim-sum restaurant or Some chinese-style bakery</string>
-    <!--<string name="recipe_7">Almost all chinese dim-sum restaurant or Some chinese-style bakery</string>-->
+    <string name="info_6">Cha siu bao is visually very similar to other types of steamed bun, but the unique mix of leavening gives the dough of cha siu bao the texture of a slightly dense, but fine soft bread.Encased in the center of the bun is tender, sweet, slow-roasted pork tenderloin which is diced, and then mixed into a syrupy mixture of oyster sauce, hoisin sauce, roasted sesame seed oil, rice vinegar, shaoxing wine or dry sherry, soy sauce, sugar and cornstarch.</string>
+    <string name="similar_6">Manapua in Hawaii or keke puaa in American Samoa</string>
+    <string name="where_6">Almost all chinese dim-sum restaurant or Some chinese-style bakery</string>
+    <!--<string name="recipe_6">Almost all chinese dim-sum restaurant or Some chinese-style bakery</string>-->
 
 </resources>

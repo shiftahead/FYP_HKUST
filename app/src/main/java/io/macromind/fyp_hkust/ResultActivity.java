@@ -54,8 +54,7 @@ public class ResultActivity extends AppCompatActivity{
         String[] resultArray = new String[mResults.length];
         int i = 0;
         for (int j: mResults) {
-            //resultArray[i++] = MainActivity.DIM_SUM_CLASSES[j];
-            resultArray[i++] =j-1 >= 0 ? MainActivity.DIM_SUM_CLASSES[j-1] : MainActivity.DIM_SUM_CLASSES[6];
+            resultArray[i++] = MainActivity.DIM_SUM_CLASSES[j];
         }
         adapter = new ArrayAdapter<String>(this, R.layout.result_list_item, resultArray);
         mResultsListView.setAdapter(adapter);
