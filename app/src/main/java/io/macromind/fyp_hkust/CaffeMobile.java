@@ -6,8 +6,6 @@ package io.macromind.fyp_hkust;
 public class CaffeMobile {
     public native void setNumThreads(int numThreads);
 
-    public native void enableLog(boolean enabled);  // currently nonfunctional
-
     public native int loadModel(String modelPath, String weightsPath);  // required
 
     private native void setMeanWithMeanFile(String meanFile);
