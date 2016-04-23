@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     public static final String EXTRA_RESULT_ARRAY = "io.macromind.fyp_hkust.result_array";
     public static final String EXTRA_IMAGE_PATH = "io.macromind.fyp_hkust.image_path";
     public static final String DEPLOY_PROTOTXT = "/sdcard/caffe_mobile/fyp/deploy.prototxt";
-    public static final String MODEL = "/sdcard/caffe_mobile/fyp/fyp_iter_60000.caffemodel";
+    public static final String MODEL = "/sdcard/caffe_mobile/fyp/fyp_iter_80000.caffemodel";
     public static String[] DIM_SUM_CLASSES;
     public static Integer[] DIM_SUM_INDEXES;
     static final int REQUEST_IMAGE_CAPTURE = 100;
